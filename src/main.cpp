@@ -63,7 +63,7 @@ void pre_auton(void)
 /*---------------------------------------------------------------------------*/
 // Calculates the shortest path to turn.
 float  getAlpha(float targetHeading){
-   float alpha0= targetHeading - IMU.heading();
+   float alpha0 = targetHeading - IMU.heading();
    float alpha1 = alpha0 + 360;
    float alpha_min = std::min(abs(alpha0), abs(alpha1));
 
@@ -208,12 +208,9 @@ void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
     //right moters speed
-float rms=Con.Axis2.position(percent);
-//left motersspeed
-float lms=Con.Axis3.position(percent);
 
-drivetrainLeft.spin(forward, rms, percent);
-drivetrainRight.spin(forward, lms, percent);
+drivetrainLeft.spin(forward);
+drivetrainRight.spin(reverse);
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
   }
@@ -242,4 +239,26 @@ int main() {
   while (true) {
     wait(100, msec);
   }
+}
+
+void pneumatic_controlls(){
+
+}
+
+void intake_controlls(){
+  
+}
+
+void drive_controlls(){      
+  //simple drive controlls
+
+
+
+  //float rms=Con.Axis2.position(percent);
+  
+  //float lms=Con.Axis3.position(percent);
+  drivetrainRight.setDriveVelocity(Con.Axis2.position(percent));
+  drivetrainLeft.setDriveVelocity(Con.Axis3.position(percent));
+
+
 }
