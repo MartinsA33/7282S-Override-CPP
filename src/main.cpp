@@ -206,11 +206,13 @@ void autonomous(void){
 
 void usercontrol(void) {
   // User control code here, inside the loop
+  drivetrainLeft.spin(forward);
+  drivetrainRight.spin(reverse);
   while (1) {
-    //right moters speed
+    drive_controlls();
+    
 
-drivetrainLeft.spin(forward);
-drivetrainRight.spin(reverse);
+
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
   }
@@ -259,6 +261,10 @@ void drive_controlls(){
   //float lms=Con.Axis3.position(percent);
   drivetrainRight.setDriveVelocity(Con.Axis2.position(percent));
   drivetrainLeft.setDriveVelocity(Con.Axis3.position(percent));
+  
 
+
+}
+float anti_tip_code(){
 
 }
